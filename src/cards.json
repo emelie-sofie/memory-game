@@ -1,0 +1,15 @@
+cards: [
+  {src: "/images/kitten-1.jpg"},
+  {src: "/images/kitten-2.jpg"},
+  {src: "/images/kitten-3.jpg"},
+  {src: "/images/kitten-4.jpg"},
+  {src: "/images/kitten-5.jpg"},
+  {src: "/images/kitten-6.jpg"},
+  {src: "/images/kitten-1.jpg"},
+  {src: "/images/kitten-2.jpg"},
+  {src: "/images/kitten-3.jpg"},
+  {src: "/images/kitten-4.jpg"},
+  {src: "/images/kitten-5.jpg"},
+  {src: "/images/kitten-6.jpg"}
+]
+}
