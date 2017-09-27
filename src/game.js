@@ -41,18 +41,22 @@ class Game extends React.Component {
     )
   }
 
+  /* Create a new instance of the Card component */
+
   renderCard = (card) => {
     return <Card
+      id={card.id}
       key={card.id}
       src={card.src}
       isFlipped={false}
       isMatched={false}
-      onClick={this.handleCardFlip}
+      whenFlipped={this.handleCardFlip}
     />
   }
 
-  handleCardFlip = (cardSrc) => {
-    alert("heeellooooo" + cardSrc)
+  // Called from Card passing the card id
+  handleCardFlip = (cardId) => {
+    alert("Card was flipped: " + cardId)
   }
 
 }

@@ -18,7 +18,8 @@ class Card extends React.Component {
   }
   // fat arrows keeps the scope of 'this' (es6)
   handleClick = () => {
-    this.props.onClick(this.props.src)
+
+    this.props.whenFlipped(this.props.id)
   }
 }
 
