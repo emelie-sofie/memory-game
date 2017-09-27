@@ -6,10 +6,10 @@ class Card extends React.Component {
 
   // Invoked when mounting the component
   render() {
-    // Render function needs to return JSX
-    // We render this card in Game.js by using <Card />
-    // Props become an object so, classname "foo" becomes { className: "foo" }
-    // on this.props, and onClick becomes { onClick: () => {} }
+    /* Render function needs to return JSX
+       We render this card in Game.js by using <Card />
+       Props become an object so, classname "foo" becomes { className: "foo" }
+       on this.props, and onClick becomes { onClick: () => {} } */
     return (
       <div className="card" onClick={this.handleClick}>
         <img src={this.props.src} alt="" />
@@ -18,8 +18,7 @@ class Card extends React.Component {
   }
   // fat arrows keeps the scope of 'this' (es6)
   handleClick = () => {
-
-    this.props.whenFlipped(this.props.id)
+    this.props.whenFlipped(this.props.uuid)
   }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from './card'
 import shuffle from 'shuffle-array'
+import uuidv4 from 'uuid/v4'
 import './game.css'
 
 const photos = [
@@ -26,9 +27,13 @@ class Game extends React.Component {
     const duplicatedPhotos = [...photos, ...photos]
     const shuffledPhotos = shuffle(duplicatedPhotos)
 
-    return shuffledPhotos.map((url, index) => ({
-      id: index,
-      src: url
+    // These objects in the array ends up on the state
+    return shuffledPhotos.map(url => ({
+      uuid: uuidv4(),
+      key: uuidv4(),
+      src: url,
+      isFlipped: false,
+      isMatched: false
     }))
   }
 
@@ -42,20 +47,20 @@ class Game extends React.Component {
   }
 
   /* Create a new instance of the Card component */
-
   renderCard = (card) => {
     return <Card
-      id={card.id}
-      key={card.id}
+      uuid={card.uuid}
+      key={card.key}
       src={card.src}
-      isFlipped={false}
-      isMatched={false}
+      isFlipped={card.isFlipped}
+      isMatched={card.isMatched}
       whenFlipped={this.handleCardFlip}
     />
   }
 
   // Called from Card passing the card id
   handleCardFlip = (cardId) => {
+    //console.log(this.state.cards[cardId])
     alert("Card was flipped: " + cardId)
   }
 
