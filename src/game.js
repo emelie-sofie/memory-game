@@ -20,11 +20,12 @@ class Game extends React.Component {
     }
   }
 
-  setupGame() {
+  setupGame = () => {
     const duplicatedPhotos = photos.concat(photos)
     return this.shuffleArray(
-      duplicatedPhotos.map(url => {
+      duplicatedPhotos.map((url, index) => {
         return {
+          key: index,
           src: url,
           isFlipped: false,
           isMatched: false
@@ -54,7 +55,12 @@ class Game extends React.Component {
   }
 
   renderCard(card) {
-    return <Card key={card.key} src={card.src} />
+    return <Card
+      key={card.key}
+      src={card.src}
+      isFlipped={card.isFlipped}
+      isMatched={card.isMatched}
+    />
   }
 }
 
