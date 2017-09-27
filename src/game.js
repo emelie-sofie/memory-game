@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './card'
+import shuffle from 'shuffle-array'
 import './game.css'
 
 const photos = [
@@ -21,8 +22,10 @@ class Game extends React.Component {
   }
 
   setupGame = () => {
-    const duplicatedPhotos = photos.concat(photos)
-    return this.shuffleArray(
+    //const duplicatedPhotos = photos.concat(photos)
+    const duplicatedPhotos = [...photos, ...photos]
+
+    return shuffle(
       duplicatedPhotos.map((url, index) => {
         return {
           key: index,
@@ -32,17 +35,6 @@ class Game extends React.Component {
         }
       })
     )
-  }
-
-  shuffleArray(array) {
-    let i = array.length - 1;
-    for (; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array;
   }
 
   render() {
