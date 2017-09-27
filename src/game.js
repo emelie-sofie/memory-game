@@ -24,17 +24,12 @@ class Game extends React.Component {
   setupGame = () => {
     //const duplicatedPhotos = photos.concat(photos)
     const duplicatedPhotos = [...photos, ...photos]
+    const shuffledPhotos = shuffle(duplicatedPhotos)
 
-    return shuffle(
-      duplicatedPhotos.map((url, index) => {
-        return {
-          key: index,
-          src: url,
-          isFlipped: false,
-          isMatched: false
-        }
-      })
-    )
+    return shuffledPhotos.map((url, index) => ({
+      id: index,
+      src: url
+    }))
   }
 
   render() {
@@ -46,14 +41,20 @@ class Game extends React.Component {
     )
   }
 
-  renderCard(card) {
+  renderCard = (card) => {
     return <Card
-      key={card.key}
+      key={card.id}
       src={card.src}
-      isFlipped={card.isFlipped}
-      isMatched={card.isMatched}
+      isFlipped={false}
+      isMatched={false}
+      onClick={this.handleCardFlip}
     />
   }
+
+  handleCardFlip = (cardSrc) => {
+    alert("heeellooooo" + cardSrc)
+  }
+
 }
 
 export default Game
