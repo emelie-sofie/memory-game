@@ -62,17 +62,12 @@ class Game extends React.Component {
 
   // Called from Card passing the card id
   handleCardFlip = (cardId) => {
-    //get card by id, toggle class 'flipped'
     const changedStateArray = this.state.cards.map(card => {
       if (cardId === card.uuid) {
         card.isFlipped = true
-        //card.isFlipped ? (card.isFlipped = false) : (card.isFlipped = true)
-        //card.isMatched ? (card.isMatched = false) : (card.isMatched = true)
-        console.log("change class of this card")
       }
       return card
     })
-    console.log("setting state first time...")
     this.setState({cards: changedStateArray}, this.checkIfCardsMatch)
   }
 
