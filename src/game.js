@@ -13,6 +13,8 @@ const photos = [
   "/images/kitten-6.jpg"
 ]
 
+let numberOfCardsFlipped = 0
+
 class Game extends React.Component {
 
   constructor(props) {
@@ -60,8 +62,54 @@ class Game extends React.Component {
 
   // Called from Card passing the card id
   handleCardFlip = (cardId) => {
-    //console.log(this.state.cards[cardId])
-    alert("Card was flipped: " + cardId)
+    //get card by id, toggle class 'flipped'
+    const changedStateArray = this.state.cards.map(card => {
+      if (cardId === card.uuid) {
+        card.isFlipped = true
+        //card.isFlipped ? (card.isFlipped = false) : (card.isFlipped = true)
+        //card.isMatched ? (card.isMatched = false) : (card.isMatched = true)
+        console.log("change class of this card")
+      }
+      return card
+    })
+    console.log("setting state first time...")
+    this.setState({cards: changedStateArray}, this.checkIfCardsMatch)
+  }
+
+  checkIfCardsMatch = () => {
+    const flippedCards = this.state.cards.filter(card => (
+      card.isFlipped
+    ))
+    if (flippedCards.length === 2) {
+      //do these two cards match?
+      console.log("do we match?")
+      if (flippedCards[0].src === flippedCards[1].src) {
+        console.log("yes match!")
+        flippedCards[0].isMatched = true
+        flippedCards[1].isMatched = true
+      }
+      setTimeout(this.flipAllCardsBackOver, 800);
+    }
+  }
+
+  flipAllCardsBackOver = () => {
+    console.log("cards in state" + this.state.cards.length)
+    const flippedCards = this.state.cards.map(card => {
+      card.isFlipped = false
+      return card
+    })
+    this.setState({cards: flippedCards}, this.isGameFinished)
+  }
+
+  isGameFinished = () => {
+    console.log("Game is over!")
+    const cardsLeftToMatch = this.state.cards.filter(card => {
+      return !card.isMatched
+    })
+    if (cardsLeftToMatch.length === 0) {
+      alert("GAme is over!!")
+      this.setupGame();
+    }
   }
 
 }

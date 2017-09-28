@@ -11,7 +11,7 @@ class Card extends React.Component {
        Props become an object so, classname "foo" becomes { className: "foo" }
        on this.props, and onClick becomes { onClick: () => {} } */
     return (
-      <div className="card" onClick={this.handleClick}>
+      <div className={this.setClassName()} onClick={this.handleClick}>
         <img src={this.props.src} alt="" />
       </div>
     )
@@ -19,6 +19,17 @@ class Card extends React.Component {
   // fat arrows keeps the scope of 'this' (es6)
   handleClick = () => {
     this.props.whenFlipped(this.props.uuid)
+    console.log(this.setClassName())
+  }
+
+  setClassName = () => {
+    if (this.props.isFlipped) {
+      return "card flipped"
+    } else if (this.props.isMatched) {
+      return "card matched"
+    } else {
+      return "card not-flipped"
+    }
   }
 }
 
