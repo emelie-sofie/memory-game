@@ -7,20 +7,19 @@ import './game.css'
 const photos = [
   "/images/kitten-1.jpg",
   "/images/kitten-2.jpg",
-  "/images/kitten-3.jpg",
-  "/images/kitten-4.jpg",
-  "/images/kitten-5.jpg",
+  // "/images/kitten-3.jpg",
+  // "/images/kitten-4.jpg",
+  // "/images/kitten-5.jpg",
   "/images/kitten-6.jpg"
 ]
-
-let numberOfCardsFlipped = 0
 
 class Game extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      cards: this.setupGame()
+      cards: this.setupGame(),
+      isGameFinished: false
     }
   }
 
@@ -40,12 +39,23 @@ class Game extends React.Component {
   }
 
   render() {
-    return (
-      <div className="game">
-        <h1>Memory Game</h1>
-        {this.state.cards.map(this.renderCard)}
-      </div>
-    )
+    if (this.state.isGameFinished) {
+      return (
+        <div className="game">
+          <h1>Memory Game</h1>
+          <div className="resetDiv">
+              <button className="resetButton" onClick={this.resetGame}>Play again!</button>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="game">
+          <h1>Memory Game</h1>
+          {this.state.cards.map(this.renderCard)}
+        </div>
+      )
+    }
   }
 
   /* Create a new instance of the Card component */
@@ -68,7 +78,8 @@ class Game extends React.Component {
       }
       return card
     })
-    this.setState({cards: changedStateArray}, this.checkIfCardsMatch)
+    this.setState({cards: changedStateArray, isGameFinished: this.isGameFinished()},
+    this.checkIfCardsMatch)
   }
 
   checkIfCardsMatch = () => {
@@ -80,7 +91,7 @@ class Game extends React.Component {
         flippedCards[0].isMatched = true
         flippedCards[1].isMatched = true
       }
-      setTimeout(this.flipAllCardsBackOver, 800);
+      setTimeout(this.flipAllCardsBackOver, 500);
     }
   }
 
@@ -89,7 +100,7 @@ class Game extends React.Component {
       card.isFlipped = false
       return card
     })
-    this.setState({cards: flippedCards}, this.isGameFinished)
+    this.setState({cards: flippedCards, isGameFinished: this.isGameFinished()})
   }
 
   isGameFinished = () => {
@@ -97,8 +108,19 @@ class Game extends React.Component {
       return !card.isMatched
     })
     if (cardsLeftToMatch.length === 0) {
-      this.setupGame();
+      return true
+    } else {
+      return false
     }
+  }
+
+  resetGame = () => {
+    const resetCards = this.state.cards.map(card => {
+      card.isFlipped = false
+      card.isMatched = false
+      return card
+    })
+    this.setState({cards: resetCards, isGameFinished: false})
   }
 
 }
