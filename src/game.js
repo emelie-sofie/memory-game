@@ -81,10 +81,7 @@ class Game extends React.Component {
       card.isFlipped
     ))
     if (flippedCards.length === 2) {
-      //do these two cards match?
-      console.log("do we match?")
       if (flippedCards[0].src === flippedCards[1].src) {
-        console.log("yes match!")
         flippedCards[0].isMatched = true
         flippedCards[1].isMatched = true
       }
@@ -93,7 +90,6 @@ class Game extends React.Component {
   }
 
   flipAllCardsBackOver = () => {
-    console.log("cards in state" + this.state.cards.length)
     const flippedCards = this.state.cards.map(card => {
       card.isFlipped = false
       return card
@@ -102,12 +98,10 @@ class Game extends React.Component {
   }
 
   isGameFinished = () => {
-    console.log("Game is over!")
     const cardsLeftToMatch = this.state.cards.filter(card => {
       return !card.isMatched
     })
     if (cardsLeftToMatch.length === 0) {
-      alert("GAme is over!!")
       this.setupGame();
     }
   }
