@@ -1,13 +1,11 @@
 html {
-  background-color: #f2f0ef;
-  background-image: url('/images/20170925_090328.jpg');
-  background-position: left;
+  height: 100%;
 }
 
 body {
-  /*margin-left: 10%;
-  margin-bottom: 10%;
-  margin-right: auto;*/
+  background-color: #f2f0ef;
+  background-image: url('/images/20170925_090328.jpg');
+  background-position: left;
   padding: 0;
   font-family: sans-serif;
   font-family: 'Lobster', cursive;

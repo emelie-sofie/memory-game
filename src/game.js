@@ -56,7 +56,9 @@ class Game extends React.Component {
       return (
         <div className="game">
           <h1>Memory Game</h1>
-          {this.state.cards.map(this.renderCard)}
+          <div className="card-container">
+            {this.state.cards.map(this.renderCard)}
+          </div>
         </div>
       )
     }
@@ -115,12 +117,7 @@ class Game extends React.Component {
   }
 
   resetGame = () => {
-    const resetCards = this.state.cards.map(card => {
-      card.isFlipped = false
-      card.isMatched = false
-      return card
-    })
-    this.setState({cards: resetCards, isGameFinished: false})
+    this.setState({cards: this.setupGame(), isGameFinished: false})
   }
 
 }

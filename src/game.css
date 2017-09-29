@@ -3,6 +3,11 @@
   margin-top: 0px;
 }
 
+.card-container {
+  display: inline-flex;
+  flex-flow: wrap;
+}
+
 h1 {
   color: white;
 }

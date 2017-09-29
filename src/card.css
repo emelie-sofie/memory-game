@@ -1,11 +1,9 @@
 .card {
   width: 185px;
   height: 185px;
-  display: inline-block;
-  float: left;
   border: solid 15px;
   border-color: white;
-  margin: 5px;
+  margin: 7px;
   background-image: url('/images/doodles.png');
 }
 
