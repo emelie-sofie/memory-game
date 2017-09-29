@@ -5,11 +5,11 @@ import uuidv4 from 'uuid/v4'
 import './game.css'
 
 const photos = [
-  "/images/kitten-1.jpg",
-  "/images/kitten-2.jpg",
-  // "/images/kitten-3.jpg",
-  // "/images/kitten-4.jpg",
-  // "/images/kitten-5.jpg",
+  //"/images/kitten-1.jpg",
+  //"/images/kitten-2.jpg",
+  "/images/kitten-3.jpg",
+  "/images/kitten-4.jpg",
+  "/images/kitten-5.jpg",
   "/images/kitten-6.jpg"
 ]
 
@@ -44,7 +44,11 @@ class Game extends React.Component {
         <div className="game">
           <h1>Memory Game</h1>
           <div className="resetDiv">
-              <button className="resetButton" onClick={this.resetGame}>Play again!</button>
+              <button
+                className="resetButton w3-animate-opacity"
+                onClick={this.resetGame}>
+                Play again!
+              </button>
           </div>
         </div>
       )
@@ -58,7 +62,7 @@ class Game extends React.Component {
     }
   }
 
-  /* Create a new instance of the Card component */
+  // Create a new instance of the Card component
   renderCard = (card) => {
     return <Card
       uuid={card.uuid}
@@ -91,7 +95,7 @@ class Game extends React.Component {
         flippedCards[0].isMatched = true
         flippedCards[1].isMatched = true
       }
-      setTimeout(this.flipAllCardsBackOver, 500);
+      setTimeout(this.flipAllCardsBackOver, 600);
     }
   }
 
@@ -107,11 +111,7 @@ class Game extends React.Component {
     const cardsLeftToMatch = this.state.cards.filter(card => {
       return !card.isMatched
     })
-    if (cardsLeftToMatch.length === 0) {
-      return true
-    } else {
-      return false
-    }
+    return cardsLeftToMatch <= 0
   }
 
   resetGame = () => {
