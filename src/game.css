@@ -1,14 +1,15 @@
 .game {
-  margin: 10%;
-  margin-top: 0px;
+  margin: 5%;
 }
 
 .card-container {
-  display: inline-flex;
+  display: flex;
   flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-h1 {
+h1, h2 {
   color: white;
 }
 

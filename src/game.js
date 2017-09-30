@@ -2,11 +2,12 @@ import React from 'react'
 import Card from './card'
 import shuffle from 'shuffle-array'
 import uuidv4 from 'uuid/v4'
+import GameOver from './game-over'
 import './game.css'
 
 const photos = [
-  //"/images/kitten-1.jpg",
-  //"/images/kitten-2.jpg",
+  "/images/kitten-1.jpg",
+  "/images/kitten-2.jpg",
   "/images/kitten-3.jpg",
   "/images/kitten-4.jpg",
   "/images/kitten-5.jpg",
@@ -39,17 +40,12 @@ class Game extends React.Component {
   }
 
   render() {
+    // {this.isGameFinished() && <SuccessMessage />}
     if (this.state.isGameFinished) {
       return (
         <div className="game">
           <h1>Memory Game</h1>
-          <div className="resetDiv">
-              <button
-                className="resetButton w3-animate-opacity"
-                onClick={this.resetGame}>
-                Play again!
-              </button>
-          </div>
+          <GameOver resetGame={this.resetGame}/>
         </div>
       )
     } else {
