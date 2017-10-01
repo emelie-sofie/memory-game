@@ -1,11 +1,11 @@
 .card {
   max-width: 250px;
-  width: 25%;
+  width: 17%;
   height: auto;
-  border: solid 15px;
+  border: solid 10px;
   border-color: white;
-  margin: 7px;
-  background-image: url('/images/doodles.png');
+  margin: 1%;
+  background-image: url('/images/regal.png');
 }
 
 img {

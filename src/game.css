@@ -1,5 +1,6 @@
 .game {
-  margin: 5%;
+  margin: 2%;
+  margin-top: 5%;
 }
 
 .card-container {
@@ -13,15 +14,23 @@ h1, h2 {
   color: white;
 }
 
+.game-title {
+  font-size: 40px;
+}
+
+.resetDiv {
+  margin: 15%;
+}
+
 .resetButton {
   background-color: white;
   border: none;
   color: black;
-  padding: 15px 20px;
+  padding: 20px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   border-radius: 25px;
+  font-size: x-large;
   font-family: 'Lobster', cursive;
 }

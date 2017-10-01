@@ -44,14 +44,14 @@ class Game extends React.Component {
     if (this.state.isGameFinished) {
       return (
         <div className="game">
-          <h1>Memory Game</h1>
+          <h1 className="game-title">Memory Game</h1>
           <GameOver resetGame={this.resetGame}/>
         </div>
       )
     } else {
       return (
         <div className="game">
-          <h1>Memory Game</h1>
+          <h1 className="game-title">Memory Game</h1>
           <div className="card-container">
             {this.state.cards.map(this.renderCard)}
           </div>
