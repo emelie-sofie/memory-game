@@ -40,24 +40,18 @@ class Game extends React.Component {
   }
 
   render() {
-    // {this.isGameFinished() && <SuccessMessage />}
-    if (this.state.isGameFinished) {
-      return (
-        <div className="game">
-          <h1 className="game-title">Memory Game</h1>
-          <GameOver resetGame={this.resetGame}/>
-        </div>
-      )
-    } else {
-      return (
-        <div className="game">
-          <h1 className="game-title">Memory Game</h1>
+    return (
+      <div className="game">
+        <h1 className="game-title">Memory Game</h1>
+
+        {this.state.isGameFinished ?
+          <GameOver resetGame={this.resetGame}/> :
           <div className="card-container">
             {this.state.cards.map(this.renderCard)}
           </div>
-        </div>
-      )
-    }
+        }
+      </div>
+    )
   }
 
   // Create a new instance of the Card component
