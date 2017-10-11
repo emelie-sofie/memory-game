@@ -1,17 +1,27 @@
 import React from 'react'
-import Card from './card'
 import shuffle from 'shuffle-array'
 import uuidv4 from 'uuid/v4'
+
+import Card from './card'
 import GameOver from './game-over'
+import GameForm from './game-form'
+
 import './game.css'
 
+const defaultNumberOfCards = 2
 const photos = [
-  "/images/kitten-1.jpg",
-  "/images/kitten-2.jpg",
-  "/images/kitten-3.jpg",
-  "/images/kitten-4.jpg",
-  "/images/kitten-5.jpg",
-  "/images/kitten-6.jpg"
+  // "/images/kitten-1.jpg",
+  // "/images/kitten-2.jpg",
+  // "/images/kitten-3.jpg",
+  // "/images/kitten-4.jpg",
+  // "/images/kitten-5.jpg",
+  // "/images/kitten-6.jpg",
+  // "/images/kitten-7.jpg",
+  // "/images/kitten-8.jpg",
+  "/images/kitten-9.jpg",
+  "/images/kitten-10.jpg",
+  "/images/kitten-11.jpg",
+  "/images/kitten-12.jpg"
 ]
 
 class Game extends React.Component {
@@ -19,14 +29,16 @@ class Game extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cards: this.setupGame(),
-      isGameFinished: false
+      cards: this.setupGame(defaultNumberOfCards),
+      isGameFinished: false,
+      showGameForm: true
     }
   }
 
-  setupGame = () => {
+  setupGame = (numberOfCards) => {
+    const photosInGame = photos.slice(0, numberOfCards / 2);
     //const duplicatedPhotos = photos.concat(photos)
-    const duplicatedPhotos = [...photos, ...photos]
+    const duplicatedPhotos = [...photosInGame, ...photosInGame]
     const shuffledPhotos = shuffle(duplicatedPhotos)
 
     // These objects in the array ends up on the state
@@ -44,10 +56,15 @@ class Game extends React.Component {
       <div className="game">
         <h1 className="game-title">Memory Game</h1>
 
+        {/* {this.state.isGameFinished && <GameOver playerName={this.state.playerName}/> } */}
+
         {this.state.isGameFinished ?
           <GameOver resetGame={this.resetGame}/> :
-          <div className="card-container">
-            {this.state.cards.map(this.renderCard)}
+          <div>
+            <GameForm playNewGame={this.playNewGame} playerName={this.state.playerName}/>
+            <div className="card-container">
+              {this.state.cards.map(this.renderCard)}
+            </div>
           </div>
         }
       </div>
@@ -74,8 +91,11 @@ class Game extends React.Component {
       }
       return card
     })
-    this.setState({cards: changedStateArray, isGameFinished: this.isGameFinished()},
-    this.checkIfCardsMatch)
+    this.setState({
+      cards: changedStateArray,
+      isGameFinished: this.isGameFinished(),
+      showGameForm: false
+    }, this.checkIfCardsMatch)
   }
 
   checkIfCardsMatch = () => {
@@ -96,7 +116,11 @@ class Game extends React.Component {
       card.isFlipped = false
       return card
     })
-    this.setState({cards: flippedCards, isGameFinished: this.isGameFinished()})
+    this.setState({
+      cards: flippedCards,
+      isGameFinished: this.isGameFinished(),
+      showGameForm: false
+    })
   }
 
   isGameFinished = () => {
@@ -106,8 +130,21 @@ class Game extends React.Component {
     return cardsLeftToMatch <= 0
   }
 
+  playNewGame = (numberOfCards, playerName) => {
+    console.log("Let's play " + playerName)
+    this.setState({
+      cards: this.setupGame(numberOfCards),
+      isGameFinished: false,
+      showGameForm: true
+    })
+  }
+
   resetGame = () => {
-    this.setState({cards: this.setupGame(), isGameFinished: false})
+    this.setState({
+      cards: this.setupGame(),
+      isGameFinished: false,
+      showGameForm: true
+    })
   }
 
 }

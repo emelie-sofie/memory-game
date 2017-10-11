@@ -14,3 +14,7 @@ body {
   font-family: 'Lobster', cursive;
   text-align: center;
 }
+
+#root {
+  color: white;
+}
