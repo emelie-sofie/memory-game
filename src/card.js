@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './card.css' // Just normal css, react injects it into the <head> component
 
 // Defining a card component which inherits functions from React.Component
-class Card extends React.Component {
+class Card extends Component {
 
   // Invoked when mounting the component
   render() {

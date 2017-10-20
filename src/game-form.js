@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './game.css'
 
-class GameForm extends React.Component {
+class GameForm extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      numberOfCards: 2,
+      numberOfCards: 4,
       playerName: ''
     }
 
@@ -31,6 +31,7 @@ class GameForm extends React.Component {
         <label>
           Name:
           <input
+            required
             type="text"
             name="playerName"
             value={this.state.playerName}
@@ -39,13 +40,12 @@ class GameForm extends React.Component {
         <input
           type="submit"
           className="resetButton w3-animate-opacity"
-          required="true"
           value="Let's play!" />
       </form>
     )
   }
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;

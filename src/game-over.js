@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class GameOver extends React.Component {
+class GameOver extends Component {
 
   render() {
     return (

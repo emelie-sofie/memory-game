@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import shuffle from 'shuffle-array'
 import uuidv4 from 'uuid/v4'
 
@@ -10,28 +10,29 @@ import './game.css'
 
 const defaultNumberOfCards = 2
 const photos = [
-  // "/images/kitten-1.jpg",
-  // "/images/kitten-2.jpg",
-  // "/images/kitten-3.jpg",
-  // "/images/kitten-4.jpg",
-  // "/images/kitten-5.jpg",
-  // "/images/kitten-6.jpg",
-  // "/images/kitten-7.jpg",
-  // "/images/kitten-8.jpg",
+  "/images/kitten-1.jpg",
+  "/images/kitten-2.jpg",
+  "/images/kitten-3.jpg",
+  "/images/kitten-4.jpg",
+  "/images/kitten-5.jpg",
+  "/images/kitten-6.jpg",
+  "/images/kitten-7.jpg",
+  "/images/kitten-8.jpg",
   "/images/kitten-9.jpg",
   "/images/kitten-10.jpg",
   "/images/kitten-11.jpg",
   "/images/kitten-12.jpg"
 ]
 
-class Game extends React.Component {
+class Game extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
       cards: this.setupGame(defaultNumberOfCards),
       isGameFinished: false,
-      showGameForm: true
+      showGameForm: true,
+      playerName: ''
     }
   }
 
@@ -94,7 +95,8 @@ class Game extends React.Component {
     this.setState({
       cards: changedStateArray,
       isGameFinished: this.isGameFinished(),
-      showGameForm: false
+      showGameForm: false,
+      playerName: this.state.playerName
     }, this.checkIfCardsMatch)
   }
 
@@ -107,7 +109,7 @@ class Game extends React.Component {
         flippedCards[0].isMatched = true
         flippedCards[1].isMatched = true
       }
-      setTimeout(this.flipAllCardsBackOver, 600);
+      setTimeout(this.flipAllCardsBackOver, 600)
     }
   }
 
@@ -119,7 +121,8 @@ class Game extends React.Component {
     this.setState({
       cards: flippedCards,
       isGameFinished: this.isGameFinished(),
-      showGameForm: false
+      showGameForm: false,
+      playerName: this.state.playerName
     })
   }
 
@@ -135,7 +138,8 @@ class Game extends React.Component {
     this.setState({
       cards: this.setupGame(numberOfCards),
       isGameFinished: false,
-      showGameForm: true
+      showGameForm: false,
+      playerName: playerName
     })
   }
 
@@ -143,7 +147,8 @@ class Game extends React.Component {
     this.setState({
       cards: this.setupGame(),
       isGameFinished: false,
-      showGameForm: true
+      showGameForm: false,
+      playerName: ''
     })
   }
 
